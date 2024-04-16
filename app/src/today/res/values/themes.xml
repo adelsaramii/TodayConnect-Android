@@ -1,0 +1,31 @@
+<resources>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/defaultColorPrimary</item>
+        <item name="colorPrimaryDark">@color/defaultColorPrimaryDark</item>
+        <item name="colorAccent">@color/defaultColorAccent</item>
+    </style>
+
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/defaultColorPrimary</item>
+        <item name="colorPrimaryDark">@color/defaultColorPrimaryDark</item>
+        <item name="colorAccent">@color/defaultColorAccent</item>
+    </style>
+
+    <style name="AppDialogTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">todayCONNECT</string>
+    <string name="app_host">"todayconnect.yekaan.ir"</string>
+    <string name="home_url">"https://todayconnect.yekaan.ir/"</string>
+    <string name="download_url">"https://todayconnect.yekaan.ir/uploaded/</string>
+    <string name="upload_url">"https://todayconnect.yekaan.ir/RFU</string>
+    <string name="label_text_powered_by">"Powered by Darkoob"</string>
+    <string name="label_text_updating">"Updating…"</string>
+    <string name="label_text_update_failed">"Update failed. Check your network availability."</string>
+    <string name="toast_permission_request_failed">"Permission request failed."</string>
+    <string name="loading_video">"Loading Video..."</string>
+    <string name="download_eta_sec">%1$ds left</string>
+    <string name="download_eta_min">%1$dm %2$ds left</string>
+    <string name="download_eta_hrs">%1$dh %2$dm %3$ds left</string>
+    <string name="download_speed_bytes">%1$d B/s</string>
+    <string name="download_speed_kb">%1$s KB/s</string>
+    <string name="download_speed_mb">%1$s MB/s</string>
+</resources>

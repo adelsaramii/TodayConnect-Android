@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <!-- View that will be hidden when video goes fullscreen -->
+    <RelativeLayout
+        android:id="@+id/nonVideoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="96dp"
+            android:text="@string/label_text_powered_by"
+            android:textAlignment="center"
+            android:textColor="@color/defaultTextColor"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/webView" />
+
+        <ImageView
+            android:id="@+id/LOGO"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentBottom="false"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:contentDescription=""
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/webView"
+            app:layout_constraintLeft_toLeftOf="@+id/webView"
+            app:layout_constraintRight_toRightOf="@+id/webView"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+        </WebView>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="48dp"
+            android:background="@color/defaultColorPrimaryDark"
+            android:text="Try again!"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="@+id/webView"
+            app:layout_constraintLeft_toLeftOf="@+id/webView"
+            app:layout_constraintRight_toRightOf="@+id/webView"
+            tools:visibility="invisible" />
+
+    </RelativeLayout>
+
+    <!-- View where the video will be shown when video goes fullscreen -->
+    <RelativeLayout
+        android:id="@+id/videoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/nonVideoLayout">
+
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

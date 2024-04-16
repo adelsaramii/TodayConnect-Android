@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name" translatable="false">Darkoob</string>
+    <string name="app_host" translatable="false">darkoob.yekaan.ir</string>
+    <string name="home_url" translatable="false">"https://darkoob.yekaan.ir/"</string>
+    <string name="download_url" translatable="false">"https://darkoob.yekaan.ir/uploaded/</string>
+    <string name="upload_url" translatable="false">"https://darkoob.yekaan.ir/RFU</string>
+    <string name="label_text_powered_by" translatable="false">"Powered by Yekaan"</string>
+    <string name="label_text_updating" translatable="false">"Updating…"</string>
+    <string name="label_text_update_failed" translatable="false">"Update failed. Check your network availability."</string>
+    <string name="toast_permission_request_failed" translatable="false">"Permission request failed."</string>
+    <string name="loading_video" translatable="false">"Loading Video..."</string>
+    <string name="download_eta_sec" translatable="false">%1$ds left</string>
+    <string name="download_eta_min" translatable="false">%1$dm %2$ds left</string>
+    <string name="download_eta_hrs" translatable="false">%1$dh %2$dm %3$ds left</string>
+    <string name="download_speed_bytes" translatable="false">%1$d B/s</string>
+    <string name="download_speed_kb" translatable="false">%1$s KB/s</string>
+    <string name="download_speed_mb" translatable="false">%1$s MB/s</string>
+    <string name="incoming_call">Conference request from %1$s</string>
+</resources>
