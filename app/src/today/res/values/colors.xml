@@ -9,4 +9,13 @@
     <color name="grayColorPrimary">#df9fc1</color>
     <color name="grayColorPrimaryDark">#000000</color>
     <color name="grayColorAccent">#0aa58f</color>
+
+    <!-- White color -->
+    <color name="white">#FFFFFF</color>
+
+    <!-- Red color -->
+    <color name="red">#FF0000</color>
+
+    <!-- Teal color -->
+    <color name="teal">#0aa58f</color>
 </resources>

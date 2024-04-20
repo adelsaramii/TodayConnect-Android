@@ -17,7 +17,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
-import ir.yekaan.darkoobnext.notification.Ring
+import ir.yekaan.darkoobnext.notification.MyObject
 import ir.yekaan.darkoobnext.state.GlobalState
 import ir.yekaan.darkoobnext.uploader.NativeUploadManager
 import ir.yekaan.darkoobnext.utils.BetterActivityResult
@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleCallIntent() {
-        Ring.getInstance(this).stopRingtone()
+        MyObject.ring?.runnable?.invoke()
         intent.getStringExtra("URL")?.let { url ->
             val displayName = GlobalState.displayName!!
             val pName = GlobalState.username!!

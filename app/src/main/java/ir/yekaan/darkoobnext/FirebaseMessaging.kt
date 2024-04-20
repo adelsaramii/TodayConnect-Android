@@ -2,6 +2,7 @@ package ir.yekaan.darkoobnext
 
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
@@ -50,7 +51,8 @@ class FirebaseMessaging : FirebaseMessagingService() {
                         val mode = jsonObject.get("mode").toString().replace("\"", "");
                         val address = jsonObject.get("address").toString().replace("\"", "");
                         if(mode == "call") {
-                            Ring.getInstance(this.applicationContext).ring(address, title);
+                            val serviceIntent = Intent(this, Ring::class.java).putExtra("address" , address).putExtra("title" , title)
+                            startService(serviceIntent)
                         }
                     }
                 }
