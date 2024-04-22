@@ -18,6 +18,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
 import ir.yekaan.darkoobnext.notification.MyObject
+import ir.yekaan.darkoobnext.notification.Ring
 import ir.yekaan.darkoobnext.state.GlobalState
 import ir.yekaan.darkoobnext.uploader.NativeUploadManager
 import ir.yekaan.darkoobnext.utils.BetterActivityResult
@@ -61,6 +62,9 @@ class MainActivity : AppCompatActivity() {
             resources.getString(R.string.home_url),
             resources.getString(R.string.download_url)
         )
+
+        val serviceIntent = Intent(this, Ring::class.java).putExtra("address" , "www.google.com").putExtra("title" , title)
+        startService(serviceIntent)
     }
 
     override fun onBackPressed() {

@@ -32,16 +32,18 @@ class Ring : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        ring(
-            intent?.getStringExtra("address").toString(),
-            intent?.getStringExtra("title").toString()
-        )
+        Handler().postDelayed({
+            ring(
+                intent?.getStringExtra("address").toString(),
+                intent?.getStringExtra("title").toString()
+            )
+        } , 5000)
         return super.onStartCommand(intent, flags, startId)
     }
 
     private fun ring(url: String, name: String) {
         setupRingtone()
-        showIncomingNotification(name , url)
+        showIncomingNotification(name, url)
         Handler(Looper.getMainLooper()).postDelayed({
             stopRingtone()
         }, 30000)
@@ -114,19 +116,7 @@ class Ring : Service() {
             builder.setCustomContentView(customView)
             builder.setCustomHeadsUpContentView(customView)
             builder.setCustomBigContentView(customView)
-
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-//                val person: Person = Person.Builder()
-//                    .setName("Adel")
-//                    .build()
-//                val notificationStyle = Notification.CallStyle.forIncomingCall(
-//                    person,
-//                    rejectPendingIntent,
-//                    answerPendingIntent
-//                )
-//
-//                builder.style = notificationStyle
-//            }
+            builder.setVisibility(Notification.VISIBILITY_PUBLIC)
 
             startForeground(1124, notification.build())
         } else {
@@ -145,84 +135,9 @@ class Ring : Service() {
             )
             notification.setCustomContentView(customView)
             notification.setCustomBigContentView(customView)
+            notification.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             startForeground(1124, notification.build())
         }
-
-
-        /*
-
-                val customView = RemoteViews(this.packageName, R.layout.custom_call_notification)
-
-                val intentFlags =
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_IMMUTABLE else 0
-
-                val answerIntent = Intent(this, MainActivity::class.java).apply {
-                    putExtra("URL", url)
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-                val answerPendingIntent =
-                    PendingIntent.getActivity(this, 0, answerIntent, PendingIntent.FLAG_IMMUTABLE)
-
-                val rejectIntent = Intent(this, RejectReceiver::class.java)
-                val rejectPendingIntent: PendingIntent =
-                    PendingIntent.getBroadcast(this, 1, rejectIntent, intentFlags)
-
-                customView.setOnClickPendingIntent(R.id.btnAnswer, answerPendingIntent)
-                customView.setOnClickPendingIntent(R.id.btnDecline, rejectPendingIntent)
-
-                if (name != "") {
-                    customView.setTextViewText(R.id.name, name)
-                } else {
-                    customView.setTextViewText(R.id.name, "Unknown")
-                }
-
-        //        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-        //            .setSmallIcon(R.drawable.telephone)
-        //            .setContentTitle(this.getString(R.string.incoming_call, name))
-        //            .setPriority(NotificationCompat.PRIORITY_HIGH)
-        //            .setCustomContentView(customView)
-        //            .setCustomBigContentView(customView)
-        //            .setDeleteIntent(rejectPendingIntent)
-        //            .setOngoing(true)
-        //            .build()
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val notificationManager =
-                        getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                    val notificationChannel = NotificationChannel(
-                        "IncomingCall",
-                        "IncomingCall", NotificationManager.IMPORTANCE_HIGH
-                    )
-                    notificationManager.createNotificationChannel(notificationChannel)
-                    val notification = NotificationCompat.Builder(this, "IncomingCall")
-                    notification.setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/" + R.raw.ringing))
-                    notification.setContentTitle("Today Connect")
-                    notification.setContentText("IncomingCall")
-                    notification.setSmallIcon(R.drawable.call)
-                    notification.setCategory(NotificationCompat.CATEGORY_CALL)
-                    notification.setStyle(NotificationCompat.DecoratedCustomViewStyle())
-                    notification.setCustomContentView(customView)
-                    notification.setCustomBigContentView(customView)
-
-                    startForeground(1124, notification.build())
-                } else {
-                    val notification = NotificationCompat.Builder(this)
-                    val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-                    notification.setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/" + R.raw.ringing))
-                    notification.setContentTitle("Today Connect")
-                    notification.setContentText("IncomingCall")
-                    notification.setSmallIcon(R.drawable.call)
-                    notification.setLargeIcon(
-                        BitmapFactory.decodeResource(
-                            this.resources,
-                            R.drawable.call
-                        )
-                    )
-                    notification.setCustomContentView(customView)
-                    notification.setCustomBigContentView(customView)
-                    startForeground(1124, notification.build())
-                }
-        */
 
     }
 
@@ -275,6 +190,8 @@ class Ring : Service() {
         val answerPendingIntent =
             PendingIntent.getActivity(this, 0, answerIntent, PendingIntent.FLAG_IMMUTABLE)
         builder.setPriority(Notification.PRIORITY_HIGH)
+        builder.setVisibility(Notification.VISIBILITY_PUBLIC)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             builder.setShowWhen(false)
         }
@@ -317,7 +234,7 @@ class Ring : Service() {
             builder.style = notificationStyle
             builder.setOngoing(true)
             builder.setDefaults(Notification.DEFAULT_ALL)
-            builder.setAutoCancel(true);
+            builder.setAutoCancel(false);
             builder.setOngoing(true);
             builder.setFullScreenIntent(testIntent, true)
             builder.setTimeoutAfter(100000)
@@ -341,6 +258,10 @@ class Ring : Service() {
             )
             customView.setOnClickPendingIntent(R.id.btnAnswer, answerPendingIntent)
             customView.setOnClickPendingIntent(R.id.btnDecline, rejectPendingIntent)
+            builder.setCustomHeadsUpContentView(customView)
+            builder.setCustomContentView(customView)
+            builder.setCustomBigContentView(customView)
+
             builder.setLargeIcon(
                 BitmapFactory.decodeResource(
                     this.resources,
@@ -355,6 +276,15 @@ class Ring : Service() {
             builder.addAction(R.drawable.call, "reject", rejectPendingIntent)
             builder.addAction(R.drawable.call, "answer", answerPendingIntent)
             incomingNotification = builder.notification
+        }
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+            val notificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationChannel = NotificationChannel(
+                "IncomingCall",
+                "IncomingCall", NotificationManager.IMPORTANCE_HIGH
+            )
+            notificationManager.createNotificationChannel(notificationChannel)
         }
         startForeground(202, incomingNotification)
     }
