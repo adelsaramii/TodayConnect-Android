@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity() {
             resources.getString(R.string.download_url)
         )
 
-        val serviceIntent = Intent(this, Ring::class.java).putExtra("address" , "www.google.com").putExtra("title" , title)
-        startService(serviceIntent)
+//        val serviceIntent = Intent(this, Ring::class.java).putExtra("address" , "www.google.com").putExtra("title" , title)
+//        startService(serviceIntent)
     }
 
     override fun onBackPressed() {

@@ -8,6 +8,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
 import android.os.Build
 import android.os.IBinder
 import android.os.Message
@@ -62,14 +64,18 @@ class DownloadService : Service() {
             }
         } else {
             // its not an update so lets begin new download
-            mDownloads.addDownloadItem(
-                this,
-                address!!,
-                destination!!,
-                fileName,
-                messenger,
-                currentRunID
-            )
+            try {
+                mDownloads.addDownloadItem(
+                    this,
+                    address!!,
+                    destination!!,
+                    fileName,
+                    messenger,
+                    currentRunID
+                )
+            } catch (e: Exception) {
+                Log.e("Fuck Mohsen : ", e.toString())
+            }
             val NOTIFICATION_CHANNEL_ID = "background_download"
             val channelName = "Background Download"
             val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -91,7 +97,12 @@ class DownloadService : Service() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) notificationBuilder.priority =
                     NotificationManager.IMPORTANCE_MIN
                 val notification = notificationBuilder.build()
-                startForeground(10, notification)
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                    startForeground(10, notification)
+                } else {
+                    startForeground(10, notification,
+                        FOREGROUND_SERVICE_TYPE_DATA_SYNC)
+                }
                 registerBroadcastReceiver()
                 firstDL = false
             }
@@ -133,7 +144,15 @@ class DownloadService : Service() {
         statusIntentFilter.addAction("ACTION_DONE")
 
         // Registers the DownloadStateReceiver and its intent filters
-        registerReceiver(mReceiver, statusIntentFilter)
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                registerReceiver(mReceiver, statusIntentFilter, RECEIVER_EXPORTED)
+            } else {
+                registerReceiver(mReceiver, statusIntentFilter)
+            }
+        } catch (e: Exception) {
+            Log.e("Fuck Mohsen : ", e.toString())
+        }
     }
 
     companion object {

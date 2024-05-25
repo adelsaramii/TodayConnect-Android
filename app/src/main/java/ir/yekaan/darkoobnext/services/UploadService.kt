@@ -10,10 +10,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.os.IBinder
 import android.os.Message
 import android.os.Messenger
 import android.os.RemoteException
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.google.gson.Gson
@@ -234,6 +236,7 @@ internal class UploadsList {
                     Toast.makeText(mUploadService, "uploadStarted", Toast.LENGTH_SHORT).show()
                     Thread(u::resumeUpload).start()
                 }
+
                 "cancel" -> u.cancelUpload()
                 "cancelByTempKey" -> {
                     uploadList.forEach { (_, v) ->
@@ -278,7 +281,7 @@ class UploadService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
-        val fileId = intent?.getStringExtra("fileId") ?:  return START_NOT_STICKY
+        val fileId = intent?.getStringExtra("fileId") ?: return START_NOT_STICKY
         val command = intent.getStringExtra("command")
         if (command != null && command == "start") {
             val resumableUploadEndpoint = intent.getStringExtra("resumableUploadEndpoint")
@@ -407,7 +410,16 @@ class UploadService : Service() {
         statusIntentFilter.addAction("ACTION_DONE")
 
         // Registers the UploadStateReceiver and its intent filters
-        registerReceiver(mReceiver, statusIntentFilter)
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                registerReceiver(mReceiver, statusIntentFilter, RECEIVER_EXPORTED)
+            } else {
+                registerReceiver(mReceiver, statusIntentFilter)
+            }
+        } catch (e: Exception) {
+            Log.e("Fuck Mohsen : ", e.toString())
+        }
     }
 
     companion object {

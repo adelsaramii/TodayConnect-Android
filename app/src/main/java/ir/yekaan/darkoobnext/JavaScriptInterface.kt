@@ -100,7 +100,7 @@ class JavaScriptInterface internal constructor(
     @JavascriptInterface
     fun resetStatusBarColor() {
         mMainActivity.setStatusBarColor(
-            mMainActivity.getResources().getColor(R.color.defaultColorPrimaryDark)
+            mMainActivity.getResources().getColor(R.color.white)
         )
     }
 

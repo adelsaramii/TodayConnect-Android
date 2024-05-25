@@ -3,6 +3,7 @@ package ir.yekaan.darkoobnext
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ApplicationInfo
+import android.util.Log
 import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
