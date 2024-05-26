@@ -64,7 +64,7 @@ class DownloadService : Service() {
             }
         } else {
             // its not an update so lets begin new download
-            try {
+//            try {
                 mDownloads.addDownloadItem(
                     this,
                     address!!,
@@ -73,9 +73,9 @@ class DownloadService : Service() {
                     messenger,
                     currentRunID
                 )
-            } catch (e: Exception) {
-                Log.e("Fuck Mohsen : ", e.toString())
-            }
+//            } catch (e: Exception) {
+//                Log.e("Fuck Mohsen : ", e.toString())
+//            }
             val NOTIFICATION_CHANNEL_ID = "background_download"
             val channelName = "Background Download"
             val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -144,15 +144,17 @@ class DownloadService : Service() {
         statusIntentFilter.addAction("ACTION_DONE")
 
         // Registers the DownloadStateReceiver and its intent filters
-        try {
+//        try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 registerReceiver(mReceiver, statusIntentFilter, RECEIVER_EXPORTED)
             } else {
                 registerReceiver(mReceiver, statusIntentFilter)
             }
-        } catch (e: Exception) {
-            Log.e("Fuck Mohsen : ", e.toString())
-        }
+
+
+//        } catch (e: Exception) {
+//            Log.e("Fuck Mohsen : ", e.toString())
+//        }
     }
 
     companion object {

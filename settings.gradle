@@ -1,8 +1,13 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
+        maven { url = uri("https://jitpack.io") }
+        maven {
+            url = uri("https://maven.google.com/")
+            name = "Google"
+        }
     }
 }
 dependencyResolutionManagement {
@@ -10,7 +15,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url = uri("https://jitpack.io") }
+        maven {
+            url = uri("https://maven.google.com/")
+            name = "Google"
+        }
+        gradlePluginPortal()
     }
 }
 rootProject.name = "Darkoob Next"

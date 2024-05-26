@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -27,6 +27,10 @@
     <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <permission
+        android:name="ir.yekaan.darkoobnext.permission.SOME_PERMISSION"
+        android:protectionLevel="signature" />
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -64,11 +68,13 @@
             </intent-filter>
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"/>
-                <data android:scheme="msgapp"/>
-                <data android:host="@string/app_host"/>
+
+                <data android:scheme="https" />
+                <data android:scheme="msgapp" />
+                <data android:host="@string/app_host" />
             </intent-filter>
         </activity>
 
@@ -79,11 +85,19 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+<!--        <service-->
+<!--            android:name=".services.DownloadService"-->
+<!--            android:exported="true"-->
+<!--            android:foregroundServiceType="dataSync"-->
+<!--            />-->
+
+
         <service
             android:name=".services.DownloadService"
             android:exported="true"
             android:foregroundServiceType="dataSync"
-            />
+            android:permission="ir.yekaan.darkoobnext.permission.SOME_PERMISSION"/>
+
         <service
             android:name=".services.UploadService"
             android:exported="true"
