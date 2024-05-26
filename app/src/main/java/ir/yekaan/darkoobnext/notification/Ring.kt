@@ -14,12 +14,15 @@ import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
+import android.os.PowerManager
 import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import ir.yekaan.darkoobnext.MainActivity
 import ir.yekaan.darkoobnext.R
+import ir.yekaan.darkoobnext.notification.lockScreen.RingtoneActivity
+import ir.yekaan.darkoobnext.notification.lockScreen.RingtoneService
 
 
 class Ring : Service() {
@@ -37,7 +40,7 @@ class Ring : Service() {
                 intent?.getStringExtra("address").toString(),
                 intent?.getStringExtra("title").toString()
             )
-        } , 5000)
+        }, 5000)
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -141,10 +144,27 @@ class Ring : Service() {
 
     }
 
+    private fun showRingtoneFullScreenActivity(url: String, title: String) {
+        val incomingCallIntent = Intent(
+            this,
+            RingtoneActivity::class.java
+        )
+        incomingCallIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        incomingCallIntent.putExtra("URL", url)
+        incomingCallIntent.putExtra("title", title)
+        startActivity(incomingCallIntent)
+    }
 
     private fun showIncomingNotification(
         name: String, url: String
     ) {
+        val pm = applicationContext.getSystemService(Context.POWER_SERVICE) as PowerManager
+        if (!pm.isInteractive) {
+            showRingtoneFullScreenActivity(url, name)
+//            val serviceIntent = Intent(this, RingtoneService::class.java).putExtra("address", url)
+//                .putExtra("title", name)
+//            startService(serviceIntent)
+        }
         val intent = Intent(this, MainActivity::class.java)
         intent.action = "voip"
         val builder: Notification.Builder = Notification.Builder(this)

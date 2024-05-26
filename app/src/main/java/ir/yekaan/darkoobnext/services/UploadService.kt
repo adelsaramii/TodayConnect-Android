@@ -281,7 +281,7 @@ class UploadService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
-        val fileId = intent?.getStringExtra("fileId") ?: return START_NOT_STICKY
+        val fileId = intent?.getStringExtra("fileId") ?:  return START_NOT_STICKY
         val command = intent.getStringExtra("command")
         if (command != null && command == "start") {
             val resumableUploadEndpoint = intent.getStringExtra("resumableUploadEndpoint")
@@ -378,7 +378,7 @@ class UploadService : Service() {
 
     override fun onDestroy() {
         if (mReceiver != null) {
-            unregisterReceiver(mReceiver)
+//            unregisterReceiver(mReceiver)
         }
         super.onDestroy()
     }
@@ -410,16 +410,8 @@ class UploadService : Service() {
         statusIntentFilter.addAction("ACTION_DONE")
 
         // Registers the UploadStateReceiver and its intent filters
-
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                registerReceiver(mReceiver, statusIntentFilter, RECEIVER_EXPORTED)
-            } else {
-                registerReceiver(mReceiver, statusIntentFilter)
-            }
-        } catch (e: Exception) {
-            Log.e("Fuck Mohsen : ", e.toString())
-        }
+        Log.e("dkvbdv", "dvpn" )
+        registerReceiver(mReceiver, statusIntentFilter , RECEIVER_EXPORTED)
     }
 
     companion object {

@@ -27,10 +27,10 @@
     <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
     <permission
         android:name="ir.yekaan.darkoobnext.permission.SOME_PERMISSION"
         android:protectionLevel="signature" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -78,6 +78,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".notification.lockScreen.RingtoneActivity"
+            android:exported="true"
+            />
+
         <service
             android:name=".FirebaseMessaging"
             android:exported="false">
@@ -85,12 +90,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-<!--        <service-->
-<!--            android:name=".services.DownloadService"-->
-<!--            android:exported="true"-->
-<!--            android:foregroundServiceType="dataSync"-->
-<!--            />-->
-
 
         <service
             android:name=".services.DownloadService"
@@ -139,6 +138,8 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <service android:name=".notification.lockScreen.RingtoneService"
+            android:foregroundServiceType="phoneCall"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

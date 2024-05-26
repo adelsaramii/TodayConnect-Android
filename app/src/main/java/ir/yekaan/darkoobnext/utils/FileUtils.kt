@@ -92,7 +92,7 @@ class FileUtils(
     // run installer if it is apk
     private val contentUri: Uri?
         get() {
-            if(service != null) {
+            if (service != null) {
                 return FileProvider.getUriForFile(
                     service!!.applicationContext,
                     "${service!!.packageName}.provider",
@@ -124,10 +124,13 @@ class FileUtils(
                 service?.startActivity(intent)
                 return true
             } catch (e: ActivityNotFoundException) {
-                Toast.makeText(
-                    mActivity, "No application can handle this file type...",
-                    Toast.LENGTH_SHORT
-                ).show()
+                try {
+                    Toast.makeText(
+                        mActivity, "No application can handle this file type...",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } catch (_: ActivityNotFoundException) {
+                }
             }
         }
         return false
@@ -150,19 +153,24 @@ class FileUtils(
             service!!.applicationContext
         }
         // Check if the file is an image or video (add other types if needed)
-        val isImage = file.name.endsWith(".jpg") || file.name.endsWith(".jpeg") || file.name.endsWith(".png")
+        val isImage =
+            file.name.endsWith(".jpg") || file.name.endsWith(".jpeg") || file.name.endsWith(".png")
         val isVideo = file.name.endsWith(".mp4") // Add other video formats if needed
 
         if (isImage || isVideo) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 val values = ContentValues().apply {
                     put(MediaStore.MediaColumns.DISPLAY_NAME, file.name)
-                    put(MediaStore.MediaColumns.MIME_TYPE, if (isImage) "image/jpeg" else "video/mp4")
+                    put(
+                        MediaStore.MediaColumns.MIME_TYPE,
+                        if (isImage) "image/jpeg" else "video/mp4"
+                    )
                     put(MediaStore.MediaColumns.IS_PENDING, 1)
                 }
 
-                val collection = if (isImage) MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-                else MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                val collection =
+                    if (isImage) MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                    else MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
 
                 val item = context.contentResolver.insert(collection, values)
 
@@ -176,7 +184,11 @@ class FileUtils(
                     context.contentResolver.update(uri, values, null, null)
                 }
             } else {
-                MediaScannerConnection.scanFile(context, arrayOf(file.absolutePath), null) { path, uri ->
+                MediaScannerConnection.scanFile(
+                    context,
+                    arrayOf(file.absolutePath),
+                    null
+                ) { path, uri ->
                     Toast.makeText(
                         mActivity, "File added to gallery.",
                         Toast.LENGTH_SHORT
