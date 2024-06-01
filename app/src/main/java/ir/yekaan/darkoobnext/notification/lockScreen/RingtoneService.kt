@@ -11,6 +11,7 @@ import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.Person
 
@@ -25,35 +26,9 @@ class RingtoneService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         url = intent?.extras?.getString("URL").toString()
         title = intent?.extras?.getString("title").toString()
-        when (intent?.action) {
-            Actions.START.toString() -> {
-                showRingtoneFullScreenActivity()
-            }
-
-            Actions.STOP.toString() -> {
-                stop()
-            }
-
-            Actions.ON_ACCEPT_CALL_BUTTON_CLICKED.toString() -> {
-                start()
-
-            }
-
-            Actions.ON_DECLINE_CALL_BUTTON_CLICKED.toString() -> {
-                start()
-            }
-
-            Actions.ON_BACK_BUTTON_CLICKED_FROM_RINGTONE_ACTIVITY.toString() -> {
-                start()
-            }
-
-            Actions.ON_RINGTONE_SCREEN_DISMISSED.toString() -> {
-                start()
-            }
-
-        }
+        Log.e("dovn", "touched" )
+        showRingtoneFullScreenActivity()
         return START_STICKY
-//        return super.onStartCommand(intent, flags, startId)
     }
 
     private fun showRingtoneFullScreenActivity() {

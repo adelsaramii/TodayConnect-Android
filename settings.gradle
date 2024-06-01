@@ -8,6 +8,13 @@ pluginManagement {
             url = uri("https://maven.google.com/")
             name = "Google"
         }
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
     }
 }
 dependencyResolutionManagement {

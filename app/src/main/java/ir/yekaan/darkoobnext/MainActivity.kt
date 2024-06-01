@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +16,10 @@ import android.view.WindowManager
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
 import ir.yekaan.darkoobnext.notification.MyObject
-import ir.yekaan.darkoobnext.notification.Ring
-import ir.yekaan.darkoobnext.notification.lockScreen.RingtoneService
 import ir.yekaan.darkoobnext.state.GlobalState
 import ir.yekaan.darkoobnext.uploader.NativeUploadManager
 import ir.yekaan.darkoobnext.utils.BetterActivityResult
@@ -64,10 +64,23 @@ class MainActivity : AppCompatActivity() {
             resources.getString(R.string.download_url)
         )
 
-        Handler().postDelayed({
-            val serviceIntent = Intent(this, Ring::class.java).putExtra("address" , "www.google.com").putExtra("title" , title)
-            startService(serviceIntent)
-        },5000)
+        if (!Settings.canDrawOverlays(this)) {
+            Handler().postDelayed({
+                Toast.makeText(this, "لطفا دسترسی های مورد نیاز را تایید کنید", Toast.LENGTH_LONG)
+                    .show()
+            }, 2000)
+
+            Handler().postDelayed({
+                if (!Settings.canDrawOverlays(this)) {
+                    // Request the permission
+                    val intent = Intent(
+                        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:$packageName")
+                    )
+                    startActivityForResult(intent, 85)
+                }
+            }, 3000)
+        }
     }
 
     override fun onBackPressed() {

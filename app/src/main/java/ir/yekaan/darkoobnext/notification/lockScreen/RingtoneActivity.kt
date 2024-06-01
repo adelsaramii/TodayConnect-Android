@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import ir.yekaan.darkoobnext.MainActivity
 import ir.yekaan.darkoobnext.R
+import ir.yekaan.darkoobnext.notification.MyObject
+import ir.yekaan.darkoobnext.notification.Ring
 
 
 class RingtoneActivity : AppCompatActivity() {
@@ -27,6 +29,8 @@ class RingtoneActivity : AppCompatActivity() {
         caller.text = intent.extras?.getString("title") ?: "Unknown"
 
         answer.setOnClickListener {
+            applicationContext.stopService(Intent(this, Ring::class.java))
+            MyObject.ring?.runnable?.invoke()
             startActivity(
                 Intent(this, MainActivity::class.java).putExtra(
                     "URL",
@@ -36,6 +40,8 @@ class RingtoneActivity : AppCompatActivity() {
         }
 
         reject.setOnClickListener {
+            applicationContext.stopService(Intent(this, Ring::class.java))
+            MyObject.ring?.runnable?.invoke()
             finish()
         }
     }
