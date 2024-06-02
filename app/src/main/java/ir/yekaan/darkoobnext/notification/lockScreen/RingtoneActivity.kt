@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import ir.yekaan.darkoobnext.MainActivity
@@ -23,8 +24,8 @@ class RingtoneActivity : AppCompatActivity() {
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
         )
         val caller: TextView = findViewById(R.id.callerName)
-        val answer: Button = findViewById(R.id.answer)
-        val reject: Button = findViewById(R.id.reject)
+        val answer: ImageView = findViewById(R.id.answer)
+        val reject: ImageView = findViewById(R.id.reject)
 
         caller.text = intent.extras?.getString("title") ?: "Unknown"
 
