@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#FFFFFF"
     android:gravity="center">
 
@@ -14,74 +14,85 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/callerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Danial Nazemi" />
+
+        <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:text="Incoming Call"
-            android:textColor="#000000"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="Today Connect Call"
+            android:textColor="@color/defaultColorPrimaryDark"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/callerName"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/today"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="Today Connect "
-            android:textColor="@color/defaultColorPrimaryDark" />
-
-        <TextView
-            android:id="@+id/callerName"
-            android:layout_width="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/today"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:text="Adel Sarami"
-            android:layout_marginTop="32dp"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="24sp" />
+            app:layout_constraintRight_toRightOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="110dp"
+            android:padding="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:padding="12dp">
+            app:layout_constraintRight_toRightOf="parent">
 
-            <Button
+            <ImageView
                 android:id="@+id/answer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#008000"
-                android:layout_marginRight="8dp"
-                android:text="Answer"
-                android:textColor="@color/white"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/ripple_main_circle"
+                android:padding="14dp"
+                android:src="@drawable/icon_answer"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/reject"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/reject"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF0000"
-                android:text="Reject"
-                android:textColor="@color/white"
-                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Accept"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toLeftOf="@+id/answer"
+                app:layout_constraintRight_toRightOf="@+id/answer"
+                app:layout_constraintTop_toBottomOf="@+id/answer" />
+
+            <ImageView
+                android:id="@+id/reject"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/ripple_second_circle"
+                android:gravity="center"
+                android:padding="14dp"
+                android:src="@drawable/icon_decline"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/answer"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Decline"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toLeftOf="@+id/reject"
+                app:layout_constraintRight_toRightOf="@+id/reject"
+                app:layout_constraintTop_toBottomOf="@+id/reject" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
