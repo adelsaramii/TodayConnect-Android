@@ -83,12 +83,6 @@ class MainActivity : AppCompatActivity() {
             }, 3000)
         }
 
-
-        Handler().postDelayed({
-            val serviceIntent = Intent(this, Ring::class.java).putExtra("address", "www.google.com")
-                .putExtra("title", "Adel Sarami")
-            startService(serviceIntent)
-        }, 3000)
     }
 
     override fun onBackPressed() {
