@@ -410,7 +410,6 @@ class UploadService : Service() {
         statusIntentFilter.addAction("ACTION_DONE")
 
         // Registers the UploadStateReceiver and its intent filters
-        Log.e("dkvbdv", "dvpn" )
         registerReceiver(mReceiver, statusIntentFilter , RECEIVER_EXPORTED)
     }
 

@@ -26,7 +26,6 @@ class RingtoneService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         url = intent?.extras?.getString("URL").toString()
         title = intent?.extras?.getString("title").toString()
-        Log.e("dovn", "touched" )
         showRingtoneFullScreenActivity()
         return START_STICKY
     }
