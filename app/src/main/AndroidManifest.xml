@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL" />
@@ -80,8 +81,10 @@
 
         <activity
             android:name=".notification.lockScreen.RingtoneActivity"
+            android:showOnLockScreen="true"
             android:exported="true"
-            />
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true" />
 
         <service
             android:name=".FirebaseMessaging"

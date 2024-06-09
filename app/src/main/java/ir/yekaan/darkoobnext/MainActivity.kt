@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }, 3000)
         }
-
     }
 
     override fun onBackPressed() {

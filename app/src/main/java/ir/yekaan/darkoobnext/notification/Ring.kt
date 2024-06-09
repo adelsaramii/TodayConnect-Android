@@ -83,6 +83,8 @@ class Ring : Service() {
                 RingtoneActivity::class.java
             )
             incomingCallIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            incomingCallIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            incomingCallIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             incomingCallIntent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
             incomingCallIntent.setData(Uri.parse("package:$packageName"));
             incomingCallIntent.putExtra("URL", url)
@@ -130,7 +132,7 @@ class Ring : Service() {
                 builder.setSound(null)
             }
             val intentFlags =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_IMMUTABLE else 0
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) PendingIntent.FLAG_IMMUTABLE else 0
             val rejectIntent = Intent(this, RejectReceiver::class.java)
             val rejectPendingIntent: PendingIntent =
                 PendingIntent.getBroadcast(this, 1, rejectIntent, intentFlags)
@@ -200,7 +202,8 @@ class Ring : Service() {
                 builder.setFullScreenIntent(testIntent, true)
                 builder.setTimeoutAfter(100000)
                 incomingNotification = builder.build()
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            }
+            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 builder.addAction(R.drawable.call, "reject", rejectPendingIntent)
                 builder.addAction(R.drawable.call, "accept", answerPendingIntent)
                 builder.setContentText(name)
@@ -232,7 +235,8 @@ class Ring : Service() {
                 incomingNotification = builder.notification
                 incomingNotification.bigContentView = customView
                 incomingNotification.headsUpContentView = incomingNotification.bigContentView
-            } else {
+            }
+            else {
                 builder.setContentText(name)
                 builder.addAction(R.drawable.call, "reject", rejectPendingIntent)
                 builder.addAction(R.drawable.call, "answer", answerPendingIntent)
@@ -248,7 +252,8 @@ class Ring : Service() {
                 notificationManager.createNotificationChannel(notificationChannel)
             }
             startForeground(202, incomingNotification)
-        } else {
+        }
+        else {
             try {
                 showRingtoneFullScreenActivity(url, name)
 
@@ -296,7 +301,7 @@ class Ring : Service() {
                 }
                 val answerPendingIntent =
                     PendingIntent.getActivity(this, 0, answerIntent, PendingIntent.FLAG_IMMUTABLE)
-                builder.setPriority(Notification.PRIORITY_HIGH)
+                builder.setPriority(Notification.PRIORITY_MIN)
                 builder.setVisibility(Notification.VISIBILITY_PUBLIC)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -321,7 +326,7 @@ class Ring : Service() {
                         getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                     val notificationChannel = NotificationChannel(
                         "IncomingCall",
-                        "IncomingCall", NotificationManager.IMPORTANCE_HIGH
+                        "IncomingCall", NotificationManager.IMPORTANCE_LOW
                     )
                     notificationManager.createNotificationChannel(notificationChannel)
                 }
@@ -405,7 +410,6 @@ class Ring : Service() {
                 startForeground(202, incomingNotification)
             } catch (e: Exception) {
             }
-
         }
     }
 
