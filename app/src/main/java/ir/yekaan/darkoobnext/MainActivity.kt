@@ -1,8 +1,11 @@
 package ir.yekaan.darkoobnext
 
+import android.annotation.SuppressLint
+import android.app.AppOpsManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Binder
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -24,6 +27,7 @@ import ir.yekaan.darkoobnext.notification.Ring
 import ir.yekaan.darkoobnext.state.GlobalState
 import ir.yekaan.darkoobnext.uploader.NativeUploadManager
 import ir.yekaan.darkoobnext.utils.BetterActivityResult
+import java.lang.reflect.Method
 import java.util.Locale
 
 
@@ -64,7 +68,10 @@ class MainActivity : AppCompatActivity() {
             resources.getString(R.string.home_url),
             resources.getString(R.string.download_url)
         )
+    }
 
+    override fun onResume() {
+        super.onResume()
         if (!Settings.canDrawOverlays(this)) {
             Handler().postDelayed({
                 Toast.makeText(this, "لطفا دسترسی های مورد نیاز را تایید کنید", Toast.LENGTH_LONG)
@@ -81,6 +88,44 @@ class MainActivity : AppCompatActivity() {
                     startActivityForResult(intent, 85)
                 }
             }, 3000)
+        } else {
+            if(!isShowOnLockScreenPermissionEnable()){
+                Handler().postDelayed({
+                    if (Build.MANUFACTURER.equals("Xiaomi", true)) {
+                        if (Locale.getDefault().language == "fe") {
+                            Toast.makeText(this, "سایز مجور ها -> نمایش بر روی صفحه قفل -> اجازه دادن", Toast.LENGTH_LONG).show()
+                        } else {
+                            Toast.makeText(this, "Other permissions -> Show on Lock screen -> Allow", Toast.LENGTH_LONG).show()
+                        }
+
+                        val intent = Intent("miui.intent.action.APP_PERM_EDITOR")
+                        intent.setClassName(
+                            "com.miui.securitycenter",
+                            "com.miui.permcenter.permissions.PermissionsEditorActivity"
+                        )
+                        intent.putExtra("extra_pkgname", packageName)
+                        startActivity(intent)
+                    }
+                }, 2000)
+            }
+        }
+    }
+
+    @SuppressLint("DiscouragedPrivateApi")
+    private fun isShowOnLockScreenPermissionEnable(): Boolean {
+        return try {
+            val manager = getSystemService(APP_OPS_SERVICE) as AppOpsManager
+            val method: Method = AppOpsManager::class.java.getDeclaredMethod(
+                "checkOpNoThrow",
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+                String::class.java
+            )
+            val result =
+                method.invoke(manager, 10020, Binder.getCallingUid(), packageName) as Int
+            AppOpsManager.MODE_ALLOWED == result
+        } catch (e: Exception) {
+            false
         }
     }
 
