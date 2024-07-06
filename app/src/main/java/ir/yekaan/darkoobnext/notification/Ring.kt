@@ -143,6 +143,22 @@ class Ring : Service() {
             }
             val answerPendingIntent =
                 PendingIntent.getActivity(this, 0, answerIntent, PendingIntent.FLAG_IMMUTABLE)
+
+            val incomingCallIntent = Intent(
+                this,
+                RingtoneActivity::class.java
+            )
+            incomingCallIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            incomingCallIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            incomingCallIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            incomingCallIntent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            incomingCallIntent.setData(Uri.parse("package:$packageName"));
+            incomingCallIntent.putExtra("URL", url)
+            incomingCallIntent.putExtra("title", name)
+
+            val contentPendingIntent =
+                PendingIntent.getActivity(this, 0, incomingCallIntent, PendingIntent.FLAG_IMMUTABLE)
+
             builder.setPriority(Notification.PRIORITY_HIGH)
             builder.setVisibility(Notification.VISIBILITY_PUBLIC)
 
@@ -153,6 +169,7 @@ class Ring : Service() {
                 builder.setColor(-0xd35a20)
                 builder.setVibrate(LongArray(0))
                 builder.setCategory(Notification.CATEGORY_CALL)
+                builder.setContentIntent(contentPendingIntent)
                 builder.setFullScreenIntent(
                     PendingIntent.getActivity(
                         this,
