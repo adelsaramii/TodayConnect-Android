@@ -29,6 +29,7 @@ import androidx.core.app.NotificationManagerCompat
 import ir.yekaan.darkoobnext.MainActivity
 import ir.yekaan.darkoobnext.R
 import ir.yekaan.darkoobnext.notification.lockScreen.RingtoneActivity
+import ir.yekaan.darkoobnext.utils.NotificationHelper
 
 
 class Ring : Service() {
@@ -54,7 +55,12 @@ class Ring : Service() {
         setupRingtone()
         showIncomingNotification(name, url)
         Handler(Looper.getMainLooper()).postDelayed({
+            MyObject.ring?.runnable?.invoke()
             stopRingtone()
+
+            NotificationHelper().sendNotification(
+                this.applicationContext, "Missed Call", "from $name", "8585",  ""
+            )
         }, 30000)
     }
 
