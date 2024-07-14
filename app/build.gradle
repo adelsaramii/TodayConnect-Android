@@ -8,7 +8,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "ir.yekaan.darkoobnext"
+        applicationId "com.today.connect"
         minSdk 26
         targetSdk 34
         versionCode 54
@@ -25,17 +25,11 @@ android {
     }
     flavorDimensions "brand"
     productFlavors {
-        yekaan {
-            dimension "brand"
-            applicationIdSuffix ""
-            versionNameSuffix ""
-            manifestPlaceholders.appProviderAuthority = "ir.yekaan.darkoobnext.provider"
-        }
         today {
             dimension "brand"
             applicationIdSuffix ""
             versionNameSuffix ""
-            manifestPlaceholders.appProviderAuthority = "ir.yekaan.darkoobnext.provider"
+            manifestPlaceholders.appProviderAuthority = "com.today.connect.provider"
         }
     }
     compileOptions {
@@ -45,7 +39,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    namespace 'ir.yekaan.darkoobnext'
+    namespace 'com.today.connect'
 }
 
 dependencies {
