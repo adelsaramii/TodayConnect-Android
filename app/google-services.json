@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:511157486237:android:51432dd5067b61e0",
         "android_client_info": {
-          "package_name": "com.yekaan.darkoob"
+          "package_name": "com.today.connect"
         }
       },
       "oauth_client": [
@@ -46,7 +46,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:511157486237:android:798d93bc4cf3d725",
         "android_client_info": {
-          "package_name": "com.yekaan.darkoob.cloud"
+          "package_name": "com.today.connect.cloud"
         }
       },
       "oauth_client": [
@@ -82,7 +82,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:511157486237:android:b6de882244b442b3",
         "android_client_info": {
-          "package_name": "com.yekaan.darkoob.dev"
+          "package_name": "com.today.connect.dev"
         }
       },
       "oauth_client": [
@@ -118,7 +118,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:511157486237:android:6cbc708aa3cbdc433eca74",
         "android_client_info": {
-          "package_name": "com.yekaan.darkoob.notiff.ir"
+          "package_name": "com.today.connect.notiff.ir"
         }
       },
       "oauth_client": [
@@ -154,7 +154,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:511157486237:android:464f03c73697c8573eca74",
         "android_client_info": {
-          "package_name": "ir.yekaan.darkoobnext"
+          "package_name": "com.today.connect"
         }
       },
       "oauth_client": [
@@ -190,7 +190,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:511157486237:android:0f10886396eca1093eca74",
         "android_client_info": {
-          "package_name": "ir.yekaan.darkoobnext.isfahan.ir"
+          "package_name": "com.today.connect.isfahan.ir"
         }
       },
       "oauth_client": [
@@ -226,7 +226,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:511157486237:android:bb1a92f765efd5443eca74",
         "android_client_info": {
-          "package_name": "ir.yekaan.darkoobnext.rasa"
+          "package_name": "com.today.connect.rasa"
         }
       },
       "oauth_client": [
@@ -262,7 +262,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:511157486237:android:76a27d9d1b05849d3eca74",
         "android_client_info": {
-          "package_name": "ir.yekaan.darkoobnext.urbantc.ir"
+          "package_name": "com.today.connect.urbantc.ir"
         }
       },
       "oauth_client": [

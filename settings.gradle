@@ -30,5 +30,5 @@ dependencyResolutionManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = "Darkoob Next"
+rootProject.name = "Today Connect"
 include ':app'

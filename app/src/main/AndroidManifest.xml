@@ -29,7 +29,7 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <permission
-        android:name="ir.yekaan.darkoobnext.permission.SOME_PERMISSION"
+        android:name="com.today.connect.permission.SOME_PERMISSION"
         android:protectionLevel="signature" />
 
     <application
@@ -98,7 +98,7 @@
             android:name=".services.DownloadService"
             android:exported="true"
             android:foregroundServiceType="dataSync"
-            android:permission="ir.yekaan.darkoobnext.permission.SOME_PERMISSION"/>
+            android:permission="com.today.connect.permission.SOME_PERMISSION"/>
 
         <service
             android:name=".services.UploadService"
