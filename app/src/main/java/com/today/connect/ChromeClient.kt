@@ -14,6 +14,8 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.widget.FrameLayout
 import android.widget.VideoView
+import com.today.connect.activity.MainActivity
+import com.today.connect.activity.PermissionManager
 
 
 class ChromeClient internal constructor(

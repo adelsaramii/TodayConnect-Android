@@ -1,4 +1,4 @@
-package com.today.connect
+package com.today.connect.activity
 
 import android.Manifest
 import android.content.pm.PackageManager

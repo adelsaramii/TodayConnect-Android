@@ -6,6 +6,7 @@ import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
+import com.today.connect.activity.MainActivity
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL

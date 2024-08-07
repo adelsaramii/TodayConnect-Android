@@ -1,4 +1,4 @@
-package com.today.connect
+package com.today.connect.activity
 
 import android.annotation.SuppressLint
 import android.app.AppOpsManager
@@ -22,6 +22,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
+import com.today.connect.CacheManager
+import com.today.connect.ChromeClient
+import com.today.connect.DownloadManager
+import com.today.connect.FirebaseMessaging
+import com.today.connect.GeolocationManager
+import com.today.connect.JavaScriptInterface
+import com.today.connect.R
+import com.today.connect.UploadManager
+import com.today.connect.WebViewManager
 import com.today.connect.notification.MyObject
 import com.today.connect.state.GlobalState
 import com.today.connect.uploader.NativeUploadManager
@@ -258,39 +267,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        var granted = true
-        for (grantResult in grantResults) {
-            if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                granted = false
-                break
-            }
-        }
-        when (requestCode) {
-            DOWNLOAD_PERMISSION_REQUEST_CODE -> if (granted) {
-                mDownloadManager.resumeAfterPermissionAcquired()
-            } else {
-                mDownloadManager.cancelAfterPermissionDenied()
-            }
 
-            UPLOAD_PERMISSION_REQUEST_CODE -> if (granted) {
-                mUploadManager.resumeAfterPermissionAcquired()
-            } else {
-                mUploadManager.cancelAfterPermissionDenied()
-            }
-
-            WEB_VIEW_PERMISSION_REQUEST_CODE -> if (granted) {
-                mChromeClient.resumeAfterPermissionAcquired()
-            } else {
-                mChromeClient.cancelAfterPermissionDenied()
-            }
-        }
-    }
+    //ToDo: fix code
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<String?>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        var granted = true
+//        for (grantResult in grantResults) {
+//            if (grantResult != PackageManager.PERMISSION_GRANTED) {
+//                granted = false
+//                break
+//            }
+//        }
+//        when (requestCode) {
+//            DOWNLOAD_PERMISSION_REQUEST_CODE -> if (granted) {
+//                mDownloadManager.resumeAfterPermissionAcquired()
+//            } else {
+//                mDownloadManager.cancelAfterPermissionDenied()
+//            }
+//
+//            UPLOAD_PERMISSION_REQUEST_CODE -> if (granted) {
+//                mUploadManager.resumeAfterPermissionAcquired()
+//            } else {
+//                mUploadManager.cancelAfterPermissionDenied()
+//            }
+//
+//            WEB_VIEW_PERMISSION_REQUEST_CODE -> if (granted) {
+//                mChromeClient.resumeAfterPermissionAcquired()
+//            } else {
+//                mChromeClient.cancelAfterPermissionDenied()
+//            }
+//        }
+//    }
 
     private fun processIntent(intent: Intent): String? {
         val bundle = intent.extras

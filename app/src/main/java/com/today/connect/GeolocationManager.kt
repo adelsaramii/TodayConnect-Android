@@ -2,6 +2,8 @@ package com.today.connect
 
 import android.webkit.GeolocationPermissions
 import android.widget.Toast
+import com.today.connect.activity.MainActivity
+import com.today.connect.activity.PermissionManager
 
 class GeolocationManager internal constructor(
     activity: MainActivity,

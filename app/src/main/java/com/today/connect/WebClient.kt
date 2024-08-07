@@ -3,6 +3,7 @@ package com.today.connect
 import android.net.http.SslError
 import android.util.Log
 import android.webkit.*
+import com.today.connect.activity.MainActivity
 import com.today.connect.helpers.CustomTabActivityHelper
 import java.util.*
 

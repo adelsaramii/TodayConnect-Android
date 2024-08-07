@@ -6,7 +6,7 @@ import android.os.Looper
 import android.os.Message
 import android.os.Messenger
 import com.google.gson.Gson
-import com.today.connect.MainActivity
+import com.today.connect.activity.MainActivity
 import com.today.connect.R
 import com.today.connect.services.UploadService
 import com.today.connect.utils.Singleton

@@ -11,8 +11,8 @@ import com.hbisoft.pickit.PickiTCallbacks
 import com.today.connect.utils.FUtils
 import com.today.connect.utils.RealPathUtil
 import com.today.connect.JavaScriptInterface
-import com.today.connect.MainActivity
-import com.today.connect.PermissionManager
+import com.today.connect.activity.MainActivity
+import com.today.connect.activity.PermissionManager
 
 internal class NativeUploadManager(
     activity: MainActivity,

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import io.karn.notify.Notify
-import com.today.connect.MainActivity
+import com.today.connect.activity.MainActivity
 import com.today.connect.R
 
 class NotificationHelper {

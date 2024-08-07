@@ -7,7 +7,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.Nullable
-import com.today.connect.MainActivity
+import com.today.connect.activity.MainActivity
 
 
 class BetterActivityResult<Input, ActivityResult : Any> private constructor(

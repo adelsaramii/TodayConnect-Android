@@ -8,6 +8,8 @@ import android.webkit.DownloadListener
 import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 import android.widget.Toast
+import com.today.connect.activity.MainActivity
+import com.today.connect.activity.PermissionManager
 import com.today.connect.services.DownloadService
 import com.today.connect.state.GlobalState
 import com.today.connect.utils.FileUtils
