@@ -10,8 +10,8 @@ import android.util.Log
 import android.webkit.JavascriptInterface
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import com.today.connect.activity.MainActivity
-import com.today.connect.activity.PermissionManager
+import com.today.connect.ui.activity.MainActivity
+import com.today.connect.ui.activity.PermissionManager
 import com.today.connect.state.GlobalState
 import com.today.connect.utils.FileUtils
 import java.net.URI

@@ -6,7 +6,7 @@ import android.content.pm.ApplicationInfo
 import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
-import com.today.connect.activity.MainActivity
+import com.today.connect.ui.activity.MainActivity
 
 
 internal class WebViewManager(

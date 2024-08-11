@@ -9,8 +9,8 @@ import android.os.Build
 import android.os.Environment
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient.FileChooserParams
-import com.today.connect.activity.MainActivity
-import com.today.connect.activity.PermissionManager
+import com.today.connect.ui.activity.MainActivity
+import com.today.connect.ui.activity.PermissionManager
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date

@@ -26,7 +26,7 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationManagerCompat
-import com.today.connect.activity.MainActivity
+import com.today.connect.ui.activity.MainActivity
 import com.today.connect.R
 import com.today.connect.notification.lockScreen.RingtoneActivity
 import com.today.connect.utils.NotificationHelper

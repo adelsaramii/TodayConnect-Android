@@ -1,11 +1,11 @@
-package com.today.connect.activity
+package com.today.connect.ui.activity
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.today.connect.R
-import com.today.connect.adapter.ViewPagerAdapter
+import com.today.connect.ui.activity.adapter.ViewPagerAdapter
 import com.today.connect.databinding.ActivityLoginBinding
 import com.today.connect.databinding.ActivitySplashBinding
 import java.util.Timer

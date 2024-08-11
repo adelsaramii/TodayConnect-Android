@@ -1,4 +1,4 @@
-package com.today.connect.activity
+package com.today.connect.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.AppOpsManager
@@ -17,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -31,10 +32,11 @@ import com.today.connect.JavaScriptInterface
 import com.today.connect.R
 import com.today.connect.UploadManager
 import com.today.connect.WebViewManager
+import com.today.connect.data.uploader.NativeUploadManager
 import com.today.connect.notification.MyObject
 import com.today.connect.state.GlobalState
-import com.today.connect.uploader.NativeUploadManager
 import com.today.connect.utils.BetterActivityResult
+import com.today.connect.utils.TokenParser
 import java.lang.reflect.Method
 import java.util.Locale
 
@@ -65,16 +67,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mJavaScriptInterface: JavaScriptInterface
     private lateinit var mNativeUploadManager: NativeUploadManager
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         GlobalState.init(this)
-        GlobalState.preferredLang = "en"
+//        GlobalState.preferredLang = "en"
         setContentView(R.layout.activity_main)
         val webView: WebView = findViewById(R.id.webView)
+        webView.settings.javaScriptEnabled = true
+        webView.webViewClient = WebViewClient()
+        Log.d("Token :", GlobalState.accessToken!!)
+
         webViewRepair(
             webView,
-            resources.getString(R.string.home_url),
-            resources.getString(R.string.download_url)
+            "https://todayconnect.yekaan.ir?username=${TokenParser(GlobalState.accessToken!!).parseTokenGetUsername()}&token=${GlobalState.accessToken}",
+            "https://todayconnect.yekaan.ir?username=${TokenParser(GlobalState.accessToken!!).parseTokenGetUsername()}&token=${GlobalState.accessToken}"
         )
     }
 
@@ -97,13 +104,21 @@ class MainActivity : AppCompatActivity() {
                 }
             }, 3000)
         } else {
-            if(!isShowOnLockScreenPermissionEnable()){
+            if (!isShowOnLockScreenPermissionEnable()) {
                 Handler().postDelayed({
                     if (Build.MANUFACTURER.equals("Xiaomi", true)) {
                         if (Locale.getDefault().language == "fe") {
-                            Toast.makeText(this, "سایز مجور ها -> نمایش بر روی صفحه قفل -> اجازه دادن", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this,
+                                "سایز مجور ها -> نمایش بر روی صفحه قفل -> اجازه دادن",
+                                Toast.LENGTH_LONG
+                            ).show()
                         } else {
-                            Toast.makeText(this, "Other permissions -> Show on Lock screen -> Allow", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this,
+                                "Other permissions -> Show on Lock screen -> Allow",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
 
                         val intent = Intent("miui.intent.action.APP_PERM_EDITOR")
@@ -268,40 +283,39 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //ToDo: fix code
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<String?>,
-//        grantResults: IntArray
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        var granted = true
-//        for (grantResult in grantResults) {
-//            if (grantResult != PackageManager.PERMISSION_GRANTED) {
-//                granted = false
-//                break
-//            }
-//        }
-//        when (requestCode) {
-//            DOWNLOAD_PERMISSION_REQUEST_CODE -> if (granted) {
-//                mDownloadManager.resumeAfterPermissionAcquired()
-//            } else {
-//                mDownloadManager.cancelAfterPermissionDenied()
-//            }
-//
-//            UPLOAD_PERMISSION_REQUEST_CODE -> if (granted) {
-//                mUploadManager.resumeAfterPermissionAcquired()
-//            } else {
-//                mUploadManager.cancelAfterPermissionDenied()
-//            }
-//
-//            WEB_VIEW_PERMISSION_REQUEST_CODE -> if (granted) {
-//                mChromeClient.resumeAfterPermissionAcquired()
-//            } else {
-//                mChromeClient.cancelAfterPermissionDenied()
-//            }
-//        }
-//    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        var granted = true
+        for (grantResult in grantResults) {
+            if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                granted = false
+                break
+            }
+        }
+        when (requestCode) {
+            DOWNLOAD_PERMISSION_REQUEST_CODE -> if (granted) {
+                mDownloadManager.resumeAfterPermissionAcquired()
+            } else {
+                mDownloadManager.cancelAfterPermissionDenied()
+            }
+
+            UPLOAD_PERMISSION_REQUEST_CODE -> if (granted) {
+                mUploadManager.resumeAfterPermissionAcquired()
+            } else {
+                mUploadManager.cancelAfterPermissionDenied()
+            }
+
+            WEB_VIEW_PERMISSION_REQUEST_CODE -> if (granted) {
+                mChromeClient.resumeAfterPermissionAcquired()
+            } else {
+                mChromeClient.cancelAfterPermissionDenied()
+            }
+        }
+    }
 
     private fun processIntent(intent: Intent): String? {
         val bundle = intent.extras
