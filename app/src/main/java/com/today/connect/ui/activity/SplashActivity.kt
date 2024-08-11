@@ -1,16 +1,16 @@
 package com.today.connect.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.today.connect.R
-import com.today.connect.ui.activity.adapter.ViewPagerAdapter
-import com.today.connect.databinding.ActivityLoginBinding
+import com.today.connect.ui.adapter.ViewPagerAdapter
 import com.today.connect.databinding.ActivitySplashBinding
 import java.util.Timer
 import java.util.TimerTask
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySplashBinding
@@ -42,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun animPager() {
-        binding.activitySplashViewpager.setPageTransformer { page, position ->
+        binding.activitySplashViewpager.setPageTransformer { page, _ ->
             page.alpha = 0f
             page.visibility = View.VISIBLE
             page.alpha = 1f

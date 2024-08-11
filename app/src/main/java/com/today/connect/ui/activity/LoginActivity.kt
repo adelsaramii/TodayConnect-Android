@@ -3,25 +3,18 @@ package com.today.connect.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.gms.common.api.Response
 import com.today.connect.R
 import com.today.connect.databinding.ActivityLoginBinding
-import com.today.connect.remote.ApiClient
 import com.today.connect.remote.RetrofitInstant
-import com.today.connect.remote.models.TokenRequest
 import com.today.connect.remote.models.TokenResponse
 import com.today.connect.state.GlobalState
-import com.today.connect.ui.activity.adapter.ViewPagerAdapter
-import com.today.connect.utils.Contents
+import com.today.connect.ui.adapter.ViewPagerAdapter
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Timer
 import java.util.TimerTask
 
@@ -188,7 +181,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun animPager() {
-        binding.activityLoginViewpager.setPageTransformer { page, position ->
+        binding.activityLoginViewpager.setPageTransformer { page, _ ->
             page.alpha = 0f
             page.visibility = View.VISIBLE
             page.alpha = 1f

@@ -1,25 +1,15 @@
-package com.today.connect.ui.activity.adapter
+package com.today.connect.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.today.connect.R
 import com.today.connect.databinding.ItemSliderSpelashBinding
 
 class ViewPagerAdapter : RecyclerView.Adapter<PagerVH>() {
 
-    //array of colors to change the background color of screen
-    private val colors = intArrayOf(
-        android.R.color.black,
-        android.R.color.holo_red_light,
-        android.R.color.holo_blue_dark,
-        android.R.color.holo_purple
-    )
-
-    lateinit var binding: ItemSliderSpelashBinding
+    private lateinit var binding: ItemSliderSpelashBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH {
         binding = ItemSliderSpelashBinding.inflate(
             LayoutInflater.from(parent.context),
