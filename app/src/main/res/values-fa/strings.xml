@@ -1,3 +1,16 @@
 <resources>
     <string name="incoming_call">درخواست کنفرانس جدید از طرف %1$s دارید!</string>
+    <string name="user_name">نام کاربری</string>
+    <string name="password">رمز عبور</string>
+    <string name="login">"ورود "</string>
+    <string name="forget_password">فراموشی رمز</string>
+    <string name="error_400">اطلاعات وارد شده نادرست است.</string>
+    <string name="online_chat_any_time">امکان چت آنلاین در هر زمان</string>
+    <string name="online_chat_any_time_discription">در هر مکان و هر زمان با همکاران خود در ارتباط باشید.</string>
+    <string name="today_ai_assistant">"دستیار هوشمند تودی  "</string>
+    <string name="today_ai_assistant_discription">تمام سوالات مربوط به فرآیندها و سازمان خود را از دستیار هوشمند تودی بپرسید</string>
+    <string name="high_message_security">"ارسال پیام با امنیت بالا "</string>
+    <string name="high_message_security_discription">مکالمات خود را در محیطی امن و خصوصی انجام دهید</string>
+    <string name="video_conference">"کنفرانس تصویری  "</string>
+    <string name="video_conference_discription">جلسات و رویداد های آنلاین خود را در این پلتفرم به صورت صوتی و تصویری برگزار کنید</string>
 </resources>

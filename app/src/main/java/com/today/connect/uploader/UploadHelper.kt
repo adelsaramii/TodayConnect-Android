@@ -1,4 +1,4 @@
-package com.today.connect.uploader
+package com.today.connect.data.uploader
 
 import android.content.Intent
 import android.os.Handler
@@ -6,7 +6,7 @@ import android.os.Looper
 import android.os.Message
 import android.os.Messenger
 import com.google.gson.Gson
-import com.today.connect.MainActivity
+import com.today.connect.ui.activity.MainActivity
 import com.today.connect.R
 import com.today.connect.services.UploadService
 import com.today.connect.utils.Singleton

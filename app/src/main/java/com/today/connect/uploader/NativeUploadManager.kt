@@ -1,4 +1,4 @@
-package com.today.connect.uploader
+package com.today.connect.data.uploader
 
 import android.app.Activity
 import android.content.ComponentName
@@ -11,8 +11,8 @@ import com.hbisoft.pickit.PickiTCallbacks
 import com.today.connect.utils.FUtils
 import com.today.connect.utils.RealPathUtil
 import com.today.connect.JavaScriptInterface
-import com.today.connect.MainActivity
-import com.today.connect.PermissionManager
+import com.today.connect.ui.activity.MainActivity
+import com.today.connect.ui.activity.PermissionManager
 
 internal class NativeUploadManager(
     activity: MainActivity,

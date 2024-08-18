@@ -9,7 +9,7 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.today.connect.MainActivity
+import com.today.connect.ui.activity.MainActivity
 import com.today.connect.R
 import com.today.connect.notification.MyObject
 import com.today.connect.notification.Ring

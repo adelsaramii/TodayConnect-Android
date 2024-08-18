@@ -18,7 +18,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.google.gson.Gson
 import com.today.connect.R
-import com.today.connect.uploader.HTTPUploader
+import com.today.connect.data.uploader.HTTPUploader
 import com.today.connect.utils.Encryption
 import org.json.JSONException
 import org.json.JSONObject

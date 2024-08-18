@@ -13,7 +13,7 @@ import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.today.connect.MainActivity
+import com.today.connect.ui.activity.MainActivity
 import com.today.connect.services.DownloadService
 import java.io.File
 import java.io.FileInputStream

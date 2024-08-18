@@ -25,6 +25,10 @@ object GlobalState {
         get() = preferences.getString("preferredLang", null)
         set(value) = preferences.edit().putString("preferredLang", value).apply()
 
+    var accessToken: String?
+        get() = preferences.getString("accessToken", null)
+        set(value) = preferences.edit().putString("accessToken", value).apply()
+
     fun getFileDownloadPath(url: String): String? {
         return preferences.getString(url, null)
     }

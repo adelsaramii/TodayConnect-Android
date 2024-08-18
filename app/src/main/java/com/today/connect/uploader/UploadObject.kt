@@ -1,4 +1,4 @@
-package com.today.connect.uploader
+package com.today.connect.data.uploader
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

@@ -1,4 +1,4 @@
-package com.today.connect.uploader
+package com.today.connect.data.uploader
 
 class UploadQuery {
     var range: String? = null

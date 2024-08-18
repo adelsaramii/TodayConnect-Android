@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.JsonParser
+import com.today.connect.ui.activity.PermissionManager
 import com.today.connect.notification.Ring
 import com.today.connect.utils.NotificationHelper
 import com.today.connect.utils.SHA256

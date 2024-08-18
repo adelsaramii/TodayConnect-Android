@@ -16,4 +16,17 @@
     <string name="download_speed_kb" translatable="false">%1$s KB/s</string>
     <string name="download_speed_mb" translatable="false">%1$s MB/s</string>
     <string name="incoming_call">Incoming Call from %1$s</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="error_400">the entered data is incorrect\n</string>
+    <string name="online_chat_any_time">Online chat any time</string>
+    <string name="online_chat_any_time_discription">You can chat with your colleagues any timer and anywhere</string>
+    <string name="today_ai_assistant">Today Ai Assistant</string>
+    <string name="today_ai_assistant_discription">Ask any question around your organisation and workflows</string>
+    <string name="high_message_security">High Message Security</string>
+    <string name="high_message_security_discription">Keep your private conversation safe and secure</string>
+    <string name="video_conference">Video conference</string>
+    <string name="video_conference_discription">Hold video and audio meetings with others easily</string>
 </resources>
